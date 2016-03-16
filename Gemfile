@@ -37,9 +37,11 @@ gem 'font-awesome-rails'
 gem 'stamp'
 gem 'simple_form'
 gem "paperclip", "~> 4.3"
+gem 'figaro'
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'aws-sdk', '<2'
 end
 
 group :development, :test do
@@ -47,17 +49,26 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
   gem 'rspec-rails'
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
 end
-# development only:
-  gem 'quiet_assets'
-  gem 'better_errors'
-  gem 'binding_of_caller'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  gem 'guard-rspec', require: false
+
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
 end
 
+
+group :test do
+ gem 'shoulda-matchers', '~> 3.1'
+ gem 'capybara'
+ gem 'launchy'
+end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
